@@ -1,35 +1,88 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if(username === "admin" && password === "1234"){
+      alert("Login Successful ✅");
+    } else {
+      alert("Invalid Credentials ❌");
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+
+    <div style={styles.container}>
+
+      <form style={styles.form} onSubmit={handleLogin}>
+
+        <h2>Login</h2>
+
+        <input
+          type="text"
+          placeholder="Enter Username"
+          value={username}
+          onChange={(e)=> setUsername(e.target.value)}
+          style={styles.input}
+        />
+
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e)=> setPassword(e.target.value)}
+          style={styles.input}
+        />
+
+        <button style={styles.button}>
+          Login
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      </form>
+
+    </div>
+
+  );
 }
 
-export default App
+const styles = {
+
+  container: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0"
+  },
+
+  form: {
+    background: "white",
+    padding: "30px",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px gray",
+    textAlign: "center"
+  },
+
+  input: {
+    display: "block",
+    margin: "10px 0",
+    padding: "10px",
+    width: "250px"
+  },
+
+  button: {
+    padding: "10px",
+    width: "100%",
+    backgroundColor: "blue",
+    color: "white",
+    border: "none"
+  }
+
+};
+
+export default App;
